@@ -4,5 +4,5 @@
 using namespace std;
 
 void TestClass::printNumber() {
-  std::cout << "Number: " << this->number << std::endl;
+  cout << "Number: " << this->number << endl;
 }
