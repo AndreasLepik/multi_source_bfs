@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.7)
 
 project(msbfs)
 
-set(SOURCES src/run.cc)
+include_directories(include)
+
+# set(SOURCES src/run.cc src/test_class.cc)
+file(GLOB SOURCES "src/*.cc")
 
 add_executable(runMSBFS ${SOURCES})
