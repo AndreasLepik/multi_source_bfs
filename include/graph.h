@@ -8,7 +8,7 @@ class Graph {
   unordered_map<int, vector<int>> adjecency_data;
 
   public:
-  void loadGraphFromFile();
+  void loadGraphFromFile(string);
 
   vector<int> getEdges(int);
 };

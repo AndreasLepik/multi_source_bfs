@@ -1,16 +1,16 @@
 #include <iostream>
 #include "graph.h"
+using namespace std;
 
 int main()
 {
-  std::cout << "hello world" << std::endl;
-
   Graph graph;
-  graph.loadGraphFromFile();
+  graph.loadGraphFromFile("../data_sets/test/out.test");
+
   auto edges = graph.getEdges(1);
   for (auto edge : edges)
   {
-    std::cout << edge << std::endl;
+    cout << edge << endl;
   }
 
   return 0;
