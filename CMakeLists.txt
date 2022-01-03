@@ -4,7 +4,6 @@ project(msbfs)
 
 include_directories(include)
 
-# set(SOURCES src/run.cc src/test_class.cc)
 file(GLOB SOURCES "src/*.cc")
 
-add_executable(runMSBFS ${SOURCES})
+add_executable(MSBFS ${SOURCES})
