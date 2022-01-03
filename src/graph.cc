@@ -5,6 +5,26 @@
 #include "graph.h"
 using namespace std;
 
+void Graph::addEdge(int first, int second)
+{
+  if (first < second)
+  {
+    int temp = first;
+    first = second;
+    second = temp;
+  }
+
+  auto vec = this->adjecency_data.find(first);
+  if (vec == this->adjecency_data.end())
+  {
+    this->adjecency_data.insert(make_pair<int, vector<int>>(1, {second}));
+  }
+  else
+  {
+    this->adjecency_data.at(first).push_back(second);
+  }
+}
+
 void Graph::loadGraphFromFile(string inputFilePath)
 {
   cout << "Loading graph from file..." << endl;
@@ -22,10 +42,9 @@ void Graph::loadGraphFromFile(string inputFilePath)
     getline(stream, second);
     int a = stoi(first);
     int b = stoi(second);
-    cout << a << endl;
-    cout << b << endl;
+    cout << a << ", " << b << endl;
+    this->addEdge(a, b);
   }
-  this->adjecency_data.insert(make_pair<int, vector<int>>(1, {1, 2, 3}));
 }
 
 vector<int> Graph::getEdges(int node)
