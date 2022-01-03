@@ -42,3 +42,6 @@
 # Executables
 *.exe
 *.out
+
+# Data sets
+/data_sets
