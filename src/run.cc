@@ -4,11 +4,10 @@ using namespace std;
 
 int main()
 {
-  Graph graph;
+  Graph graph {5};
   graph.loadGraphFromFile("../data_sets/test/out.test");
 
-  cout << endl;
-  auto edges = graph.getEdges(1);
+  auto edges = graph.getEdges(4);
   for (auto edge : edges)
   {
     cout << edge << endl;

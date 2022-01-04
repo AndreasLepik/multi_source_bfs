@@ -5,24 +5,17 @@
 #include "graph.h"
 using namespace std;
 
+Graph::Graph(int numberOfNodes) {
+  this->adjecency_matrix = unordered_map<int, unordered_set<int>>(numberOfNodes);
+  for (int i = 1; i <= numberOfNodes; ++i) {
+    this->adjecency_matrix.insert(make_pair(i, unordered_set<int>()));
+  }
+}
+
 void Graph::addEdge(int first, int second)
 {
-  if (first < second)
-  {
-    int temp = first;
-    first = second;
-    second = temp;
-  }
-
-  auto vec = this->adjecency_data.find(first);
-  if (vec == this->adjecency_data.end())
-  {
-    this->adjecency_data.insert(make_pair<int, vector<int>>(1, {second}));
-  }
-  else
-  {
-    this->adjecency_data.at(first).push_back(second);
-  }
+    this->adjecency_matrix.at(first).insert(second);
+    this->adjecency_matrix.at(second).insert(first);
 }
 
 void Graph::loadGraphFromFile(string inputFilePath)
@@ -42,12 +35,11 @@ void Graph::loadGraphFromFile(string inputFilePath)
     getline(stream, second);
     int a = stoi(first);
     int b = stoi(second);
-    cout << a << ", " << b << endl;
     this->addEdge(a, b);
   }
 }
 
-vector<int> Graph::getEdges(int node)
+unordered_set<int> Graph::getEdges(int node)
 {
-  return this->adjecency_data.at(node);
+  return this->adjecency_matrix.at(node);
 }

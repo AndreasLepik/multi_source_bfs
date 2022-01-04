@@ -45,3 +45,6 @@
 
 # Data sets
 /data_sets
+
+# IDE, Text Editors
+/.vscode
