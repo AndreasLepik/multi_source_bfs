@@ -1,2 +1,2 @@
 # Multi Source Breadth First Search Project
-TODO: add short description and cite paper.
+Project exploring different variants of Multi Source Breadth First Search Algorithms based on [this paper](https://db.in.tum.de/~kaufmann/papers/msbfs.pdf). 
