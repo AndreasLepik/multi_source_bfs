@@ -1,17 +1,22 @@
 #include <iostream>
-#include "graph.h"
-using namespace std;
+#include "context.h"
+#include "textbook-bfs.h"
 
 int main()
 {
-  Graph graph {5};
-  graph.loadGraphFromFile("../data_sets/test/out.test");
+  // Algorithms
+  TextBookBFS tbfs;
 
-  auto edges = graph.getEdges(4);
-  for (auto edge : edges)
-  {
-    cout << edge << endl;
-  }
+  // Data sets
+  string test = "../data_sets/test/out.test";
+  string twitter = "../data_sets/twitter/out.txt";
+
+  // Context context {tbfs, test};
+  Context context;
+  context.setData(test);
+  context.setAlgorithm(&tbfs);
+
+  context.run();
 
   return 0;
 }

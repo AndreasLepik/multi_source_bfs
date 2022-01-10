@@ -1,6 +1,10 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
 using namespace std;
 
 class Graph
@@ -15,3 +19,5 @@ public:
   void loadGraphFromFile(string);
   unordered_set<int> getEdges(int);
 };
+
+#endif
