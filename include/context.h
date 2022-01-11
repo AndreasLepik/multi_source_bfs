@@ -10,6 +10,8 @@ private:
   string path;
 
 public:
+  Context(string path, BFS *algorithm);
+
   void run();
 
   void setData(string path);

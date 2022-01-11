@@ -7,14 +7,14 @@ int main()
   // Algorithms
   TextBookBFS tbfs;
 
-  // Data sets
+  // Local Data Sets
   string test = "../data_sets/test/out.test";
   string twitter = "../data_sets/twitter/out.txt";
 
-  // Context context {tbfs, test};
-  Context context;
-  context.setData(test);
-  context.setAlgorithm(&tbfs);
+  Context context{test, &tbfs};
+  
+  // context.setData(test);
+  // context.setAlgorithm(&tbfs);
 
   context.run();
 
