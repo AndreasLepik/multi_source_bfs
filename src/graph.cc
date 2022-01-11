@@ -6,17 +6,21 @@
 
 using namespace std;
 
-Graph::Graph(int numberOfNodes) {
+Graph::Graph(int numberOfNodes, string pathToData)
+{
   this->adjecency_matrix = unordered_map<int, unordered_set<int>>(numberOfNodes);
-  for (int i = 1; i <= numberOfNodes; ++i) {
+  for (int i = 0; i <= numberOfNodes; ++i)
+  {
     this->adjecency_matrix.insert(make_pair(i, unordered_set<int>()));
   }
+
+  loadGraphFromFile(pathToData);
 }
 
 void Graph::addEdge(int first, int second)
 {
-    this->adjecency_matrix.at(first).insert(second);
-    this->adjecency_matrix.at(second).insert(first);
+  this->adjecency_matrix.at(first).insert(second);
+  this->adjecency_matrix.at(second).insert(first);
 }
 
 void Graph::loadGraphFromFile(string inputFilePath)

@@ -7,9 +7,7 @@ Context::Context(string path, BFS *algorithm) : path(path), bfs(algorithm){};
 
 void Context::run(vector<int> sources)
 {
-  Graph graph{5};
-  graph.loadGraphFromFile("../data_sets/test/out.test");
-
+  Graph graph{29, path};
   bfs->run(graph, sources);
 }
 
