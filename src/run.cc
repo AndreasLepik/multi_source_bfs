@@ -9,12 +9,13 @@ int main()
 
   // Local data sets
   string test = "../data_sets/test/out.test";
+  string zebra = "../data_sets/zebra/out.zebra";
   string twitter = "../data_sets/twitter/out.txt";
 
   // Starting points
-  vector<int> sources {1};
+  vector<int> sources {20};
 
-  Context context{test, &tbfs};
+  Context context{zebra, &tbfs};
   
   // context.setData(test);
   // context.setAlgorithm(&tbfs);
