@@ -5,7 +5,7 @@ using namespace std;
 
 class TextBookBFS : public BFS
 {
-  void run(Graph &graph)
+  void run(Graph &graph, vector<int> sources)
   {
     auto edges = graph.getEdges(1);
     for (auto edge : edges)

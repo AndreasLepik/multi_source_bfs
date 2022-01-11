@@ -12,7 +12,7 @@ private:
 public:
   Context(string path, BFS *algorithm);
 
-  void run();
+  void run(vector<int> sources);
 
   void setData(string path);
   void setAlgorithm(BFS *algorithm);
