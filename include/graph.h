@@ -11,7 +11,7 @@ using namespace std;
 class Graph
 {
 private:
-  // TODO: change to better suited data type.
+  // only used while loading from file
   vector<set<int>> adjecency_matrix;
 
   vector<int> adjecency_indexes;

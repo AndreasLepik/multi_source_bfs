@@ -8,13 +8,9 @@ using namespace std;
 
 Graph::Graph(int numberOfNodes, string pathToData)
 {
-  this->adjecency_matrix = vector<set<int>>(numberOfNodes, set<int>());
-  // for (int i = 0; i <= numberOfNodes; ++i)
-  // {
-  //   this->adjecency_matrix.push_back(set<int>());
-  // }
+  this->adjecency_matrix = vector<set<int>>(numberOfNodes + 1, set<int>());
 
-  adjecency_indexes = vector<int>(adjecency_matrix.size() + 1);
+  adjecency_indexes = vector<int>(numberOfNodes + 2);
   adjecency_edges = vector<int>();
 
   loadGraphFromFile(pathToData);
@@ -59,6 +55,8 @@ void Graph::loadGraphFromFile(string inputFilePath)
     }
     currentIndexIndex++;
   }
+  // Add one extra index for accessing the last element
+  adjecency_indexes.at(currentIndexIndex) = currentEdgeIndex;
 
   // Deallocate adjecency matrix that no longer used.
   adjecency_matrix.clear();
