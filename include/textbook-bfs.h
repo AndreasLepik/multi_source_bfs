@@ -32,7 +32,7 @@ class TextBookBFS : public BFS
       }
       visit = visitNext;
       visitNext = {};
-      cout << endl;
+      cout << "+" << endl;
     }
   };
 };
