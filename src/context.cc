@@ -3,17 +3,18 @@
 
 using namespace std;
 
-Context::Context(string path, BFS *algorithm) : path(path), bfs(algorithm){};
+Context::Context(string path, BFS *algorithm, int size) : pathToGraphFile(path), bfs(algorithm), graphSize(size){};
 
 void Context::run(vector<int> sources)
 {
-  Graph graph{29, path};
+  Graph graph{graphSize, pathToGraphFile};
   bfs->run(graph, sources);
 }
 
-void Context::setData(string path)
+void Context::setData(string path, int graphSize)
 {
-  this->path = path;
+  this->pathToGraphFile = path;
+  this->graphSize = graphSize;
 }
 
 void Context::setAlgorithm(BFS *algorithm)
