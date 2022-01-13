@@ -8,6 +8,7 @@ class TextBookBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
   {
+    cout << "Runnig TBFS..." << endl;
     int source = sources[0];
 
     unordered_set<int> seen{source};
