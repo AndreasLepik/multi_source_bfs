@@ -7,11 +7,11 @@ class Context
 {
 private:
   BFS *bfs;
-  string pathToGraphFile;
   int graphSize;
+  string pathToGraphFile;
 
 public:
-  Context(string path, BFS *algorithm, int size);
+  Context(string path, int size, BFS *algorithm);
 
   void run(vector<int> sources);
 

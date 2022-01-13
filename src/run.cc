@@ -8,16 +8,16 @@ int main()
   TextBookBFS tbfs;
 
   // Local data sets
-  string test = "../data_sets/test/out.test";
-  string zebra = "../data_sets/zebra/out.zebra"; // size 20
+  string test = "../data_sets/test/out.test"; // size 5
+  string zebra = "../data_sets/zebra/out.zebra"; // size 27
   string twitter = "../data_sets/twitter/out.txt";
-  string wikipedia = "../data_sets/wikipedia_link_eu/out.wikipedia_link_eu";
+  string wikipedia = "../data_sets/wikipedia_link_eu/out.wikipedia_link_eu"; // size 371025
 
   // Starting points
-  vector<int> sources {20};
+  vector<int> sources{19, 20, 22};
 
-  Context context{wikipedia, &tbfs, 371025};
-  
+  Context context{zebra, 27, &tbfs};
+
   // context.setData(test);
   // context.setAlgorithm(&tbfs);
 
