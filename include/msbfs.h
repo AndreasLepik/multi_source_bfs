@@ -31,12 +31,11 @@ class MSBFS : public BFS
     {
       for (auto v : visitKeys)
       {
-        // cout << node.first << ", " << node.second << endl;
-        set<int> neighbours;
+        set<int> exploreNext;
         auto incomingNodes = visit.equal_range(v);
         for (auto n = incomingNodes.first; n != incomingNodes.second; ++n)
         {
-          neighbours.merge(n->second);
+          exploreNext.merge(n->second);
         }
 
         for (auto n : graph.getEdges(v))
@@ -45,17 +44,17 @@ class MSBFS : public BFS
           auto nSeen = seen.find(n);
           if (nSeen == seen.end())
           {
-            D = neighbours;
+            D = exploreNext;
           }
           else
           {
-            set_difference(neighbours.begin(),
-                           neighbours.end(),
+            set_difference(exploreNext.begin(),
+                           exploreNext.end(),
                            nSeen->second.begin(),
                            nSeen->second.end(),
                            inserter(D, D.begin()));
           }
-          // D = neighbours \ seen.at(n);
+          // D = exploreNext \ seen.at(n);
           if (D.size() > 0)
           {
             visitNext.insert(make_pair(n, D));

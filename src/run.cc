@@ -20,9 +20,6 @@ int main()
 
   Context context{test, 6, &msbfs};
 
-  // context.setData(test);
-  // context.setAlgorithm(&tbfs);
-
   context.run(sources);
 
   return 0;
