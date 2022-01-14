@@ -14,7 +14,7 @@ class MSBFS : public BFS
 
     // have to change to ordered set in order to do set difference?
     unordered_map<int, set<int>> seen(sources.size());
-    // {(v => source)}
+    // {(v => { source })}
     unordered_multimap<int, set<int>> visit;
     unordered_multimap<int, set<int>> visitNext;
     set<int> visitKeys;
@@ -42,23 +42,40 @@ class MSBFS : public BFS
         for (auto n : graph.getEdges(v))
         {
           set<int> D;
-          // set<int> D = neighbours \ seen.at(n);
-          set_difference(neighbours.begin(),
-                         neighbours.end(),
-                         seen.at(n).begin(),
-                         seen.at(n).end(),
-                         D);
+          auto nSeen = seen.find(n);
+          if (nSeen == seen.end())
+          {
+            D = neighbours;
+          }
+          else
+          {
+            set_difference(neighbours.begin(),
+                           neighbours.end(),
+                           nSeen->second.begin(),
+                           nSeen->second.end(),
+                           inserter(D, D.begin()));
+          }
+          // D = neighbours \ seen.at(n);
           if (D.size() > 0)
           {
-            // seen.insert(n);
-            // visitNext.push_back(n);
+            visitNext.insert(make_pair(n, D));
+            visitNextKeys.insert(n);
+            auto nSeen = seen.find(n);
+            if (nSeen == seen.end()) {
+              seen.insert(make_pair(n, D));
+            } else {
+              seen.at(n).merge(D);
+            }
 
+            // do actual BFS calculation here
             cout << n << endl;
           }
         }
       }
       visit = visitNext;
-      visitNext = {};
+      visitKeys = visitNextKeys;
+      visitNext.clear();
+      visitNextKeys.clear();
       cout << "+" << endl;
     }
   };

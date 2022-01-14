@@ -28,12 +28,13 @@ class TextBookBFS : public BFS
               seen.insert(n);
               visitNext.push_back(n);
 
+              // do actual BFS calculation here
               cout << n << endl;
             }
           }
         }
         visit = visitNext;
-        visitNext = {};
+        visitNext.clear();
         cout << "+" << endl;
       }
     }
