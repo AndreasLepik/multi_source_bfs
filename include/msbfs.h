@@ -1,6 +1,5 @@
 #include <iostream>
 #include <algorithm>
-#include <queue>
 #include <set>
 #include "bfs.h"
 
@@ -11,10 +10,10 @@ class MSBFS : public BFS
   void run(Graph &graph, vector<int> sources)
   {
     cout << "Runnig MBFS..." << endl;
+    int numberOfCalculationsSaved = 0;
 
     // have to change to ordered set in order to do set difference?
     unordered_map<int, set<int>> seen(sources.size());
-    // {(v => { source })}
     unordered_multimap<int, set<int>> visit;
     unordered_multimap<int, set<int>> visitNext;
     set<int> visitKeys;
@@ -57,17 +56,24 @@ class MSBFS : public BFS
           // D = exploreNext \ seen.at(n);
           if (D.size() > 0)
           {
+            if (D.size() > 1)
+            {
+              numberOfCalculationsSaved += (D.size() - 1);
+            }
             visitNext.insert(make_pair(n, D));
             visitNextKeys.insert(n);
             auto nSeen = seen.find(n);
-            if (nSeen == seen.end()) {
+            if (nSeen == seen.end())
+            {
               seen.insert(make_pair(n, D));
-            } else {
+            }
+            else
+            {
               seen.at(n).merge(D);
             }
 
             // do actual BFS calculation here
-            cout << n << endl;
+            // cout << n << endl;
           }
         }
       }
@@ -75,7 +81,8 @@ class MSBFS : public BFS
       visitKeys = visitNextKeys;
       visitNext.clear();
       visitNextKeys.clear();
-      cout << "+" << endl;
+      // cout << "+" << endl;
     }
+    cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
   };
 };
