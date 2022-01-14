@@ -7,8 +7,7 @@ class Context
 {
 private:
   BFS *bfs;
-  int graphSize;
-  string pathToGraphFile;
+  Graph graph;
 
 public:
   Context(string path, int size, BFS *algorithm);
