@@ -7,3 +7,5 @@ include_directories(include)
 file(GLOB SOURCES "src/*.cc")
 
 add_executable(MSBFS ${SOURCES})
+
+target_compile_features(MSBFS PRIVATE cxx_std_17)
