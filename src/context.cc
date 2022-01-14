@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Context::Context(string path, int size, BFS *algorithm)
-    : bfs(algorithm), graph(Graph{size, path}){};
+Context::Context(string path, int size, BFS *algorithm, bool timer)
+    : bfs(algorithm), graph(Graph{size, path}), timer(timer){};
 
 void Context::run(vector<int> sources)
 {
