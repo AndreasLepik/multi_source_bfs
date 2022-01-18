@@ -15,7 +15,6 @@ class TextBookBFS : public BFS
       unordered_set<int> seen{source};
       vector<int> visit{source};
       vector<int> visitNext;
-      // visit.push(source);
 
       while (visit.size() > 0)
       {
@@ -29,13 +28,13 @@ class TextBookBFS : public BFS
               visitNext.push_back(n);
 
               // do actual BFS calculation here
-              cout << n << endl;
+              // cout << n << endl;
             }
           }
         }
         visit = visitNext;
         visitNext.clear();
-        cout << "+" << endl;
+        // cout << "+" << endl;
       }
     }
   };

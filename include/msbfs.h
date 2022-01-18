@@ -10,9 +10,9 @@ class MSBFS : public BFS
   void run(Graph &graph, vector<int> sources)
   {
     cout << "Runnig MBFS..." << endl;
-    int numberOfCalculationsSaved = 0;
+    // int numberOfCalculationsSaved = 0;
 
-    // have to change to ordered set in order to do set difference?
+    // have to use ordered set in order to do set difference?
     unordered_map<int, set<int>> seen(sources.size());
     unordered_multimap<int, set<int>> visit;
     unordered_multimap<int, set<int>> visitNext;
@@ -56,10 +56,10 @@ class MSBFS : public BFS
           // D = exploreNext \ seen.at(n);
           if (D.size() > 0)
           {
-            if (D.size() > 1)
-            {
-              numberOfCalculationsSaved += (D.size() - 1);
-            }
+            // if (D.size() > 1)
+            // {
+            //   numberOfCalculationsSaved += (D.size() - 1);
+            // }
             visitNext.insert(make_pair(n, D));
             visitNextKeys.insert(n);
             auto nSeen = seen.find(n);
@@ -83,6 +83,6 @@ class MSBFS : public BFS
       visitNextKeys.clear();
       // cout << "+" << endl;
     }
-    cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
+    // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
   };
 };
