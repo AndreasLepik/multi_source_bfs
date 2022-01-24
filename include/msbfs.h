@@ -9,10 +9,9 @@ class MSBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
   {
-    cout << "Runnig MBFS..." << endl;
+    cout << "Runnig MSBFS..." << endl;
     // int numberOfCalculationsSaved = 0;
 
-    // have to use ordered set in order to do set difference?
     unordered_map<int, set<int>> seen(sources.size());
     unordered_multimap<int, set<int>> visit;
     unordered_multimap<int, set<int>> visitNext;
