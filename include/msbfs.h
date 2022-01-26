@@ -72,15 +72,15 @@ class MSBFS : public BFS
             }
 
             // do actual BFS calculation here
-            // cout << n << endl;
+            cout << n << endl;
           }
         }
       }
-      visit = visitNext;
-      visitKeys = visitNextKeys;
+      visit = move(visitNext);
+      visitKeys = move(visitNextKeys);
       visitNext.clear();
       visitNextKeys.clear();
-      // cout << "+" << endl;
+      cout << "+" << endl;
     }
     // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
   };

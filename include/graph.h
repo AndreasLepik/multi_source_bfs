@@ -11,8 +11,9 @@ using namespace std;
 class Graph
 {
 private:
-  // only used while loading from file
+  // only used while loading from file, consider moving to function scope.
   vector<set<int>> adjecency_matrix;
+  int size;
 
   vector<int> adjecency_indexes;
   vector<int> adjecency_edges;
@@ -23,6 +24,7 @@ private:
 public:
   Graph(int, string);
   vector<int> getEdges(int);
+  int getSize();
 };
 
 #endif

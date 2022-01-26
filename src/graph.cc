@@ -13,7 +13,14 @@ Graph::Graph(int numberOfNodes, string pathToData)
   adjecency_indexes = vector<int>(numberOfNodes + 2);
   adjecency_edges = vector<int>();
 
+  this->size = numberOfNodes;
+
   loadGraphFromFile(pathToData);
+}
+
+int Graph::getSize()
+{
+  return this->size;
 }
 
 void Graph::addEdge(int first, int second)

@@ -77,8 +77,8 @@ class UnorderedMSBFS : public BFS
           }
         }
       }
-      visit = visitNext;
-      visitKeys = visitNextKeys;
+      visit = move(visitNext);
+      visitKeys = move(visitNextKeys);
       visitNext.clear();
       visitNextKeys.clear();
       // cout << "+" << endl;
