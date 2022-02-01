@@ -9,11 +9,12 @@ private:
   BFS *bfs;
   bool timer;
   Graph graph;
+  vector<int> sources;
 
 public:
-  Context(string path, int size, BFS *algorithm, bool timer = false);
+  Context(string path, int size, BFS *algorithm, vector<int> sources, bool timer = false);
 
-  void run(vector<int> sources);
+  void run();
 
   void setTimer(bool);
   void setData(string path, int graphSize);
