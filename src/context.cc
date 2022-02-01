@@ -37,3 +37,8 @@ void Context::setAlgorithm(BFS *algorithm)
 {
   this->bfs = algorithm;
 }
+
+void Context::setSources(vector<int> sources)
+{
+  this->sources = sources;
+}

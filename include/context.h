@@ -19,4 +19,5 @@ public:
   void setTimer(bool);
   void setData(string path, int graphSize);
   void setAlgorithm(BFS *algorithm);
+  void setSources(vector<int> sources);
 };
