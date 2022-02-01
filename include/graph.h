@@ -8,6 +8,10 @@
 
 using namespace std;
 
+/**
+ * Graph representation class
+ * Builds graph from CSL text file. 
+ */
 class Graph
 {
 private:

@@ -5,6 +5,13 @@
 
 using namespace std;
 
+/**
+ * #################### Multi Source Breadth First Search ####################
+ *
+ * Naive MSBFS algorithm implementation using STL data structures.
+ * Runs all BFSs concurrently, but single threaded.
+ * When multiple BFSs reach the same node in the same depth, the calculation for that node is only done once.
+ */
 class MSBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
@@ -55,10 +62,8 @@ class MSBFS : public BFS
           // D = exploreNext \ seen.at(n);
           if (D.size() > 0)
           {
-            // if (D.size() > 1)
-            // {
-            //   numberOfCalculationsSaved += (D.size() - 1);
-            // }
+            // numberOfCalculationsSaved += (D.size() - 1);
+
             visitNext.insert(make_pair(n, D));
             visitNextKeys.insert(n);
             auto nSeen = seen.find(n);
@@ -72,7 +77,7 @@ class MSBFS : public BFS
             }
 
             // do actual BFS calculation here
-            cout << n << endl;
+            // cout << n << endl;
           }
         }
       }
@@ -80,7 +85,7 @@ class MSBFS : public BFS
       visitKeys = move(visitNextKeys);
       visitNext.clear();
       visitNextKeys.clear();
-      cout << "+" << endl;
+      // cout << "+" << endl;
     }
     // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
   };

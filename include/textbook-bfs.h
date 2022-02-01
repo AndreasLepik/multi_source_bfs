@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/**
+ * #################### Textbook Breadth First Search ####################
+ * 
+ * The classic unmodified version.
+ * If multiple sources, it just runs one the other.
+ */
 class TextBookBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
