@@ -24,19 +24,21 @@ int main()
   vector<int> twentyOnes{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   vector<int> testSources{1, 2};
   vector<int> wikipediaSources;
-  for (int i = 1; i < 11; ++i) {
-    wikipediaSources.push_back(i * 370);
+  for (int i = 1; i < 4; ++i) {
+    wikipediaSources.push_back(i * 1000);
   }
 
-  Context context{test, 6, &bmsbfs, true};
-  // Context context{wikipedia, 371025, &msbfs, true};
+  // Context context{test, 6, &bmsbfs, true};
+  Context context{wikipedia, 371025, &bmsbfs, wikipediaSources, true};
   // Context context{zebra, 27, &msbfs, true};
 
-  context.run(testSources);
+  context.run();
   context.setAlgorithm(&msbfs);
-  context.run(testSources);
-  // context.setAlgorithm(&tbfs);
-  // context.run(testSources);
+  context.run();
+  context.setAlgorithm(&umsbfs);
+  context.run();
+  context.setAlgorithm(&tbfs);
+  context.run();
 
   return 0;
 }
