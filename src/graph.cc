@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <map>
 #include "graph.h"
 
 using namespace std;
@@ -16,6 +17,11 @@ Graph::Graph(int numberOfNodes, string pathToData)
   this->size = numberOfNodes;
 
   loadGraphFromFile(pathToData);
+}
+
+vector<int> Graph::getDegreeSortedNodes()
+{
+  return this->degree_sorted_nodes;
 }
 
 int Graph::getSize()
@@ -64,6 +70,17 @@ void Graph::loadGraphFromFile(string inputFilePath)
   }
   // Add one extra index for accessing the last element
   adjecency_indexes.at(currentIndexIndex) = currentEdgeIndex;
+
+  // Build sorted list based on degree
+  map<int, int> degreeMap;
+  for (int i = 0; i < adjecency_matrix.size(); ++i)
+  {
+    degreeMap.insert(make_pair(adjecency_matrix.at(i).size(), i));
+  }
+  for (auto a = degreeMap.rbegin(); a != degreeMap.rend(); ++a)
+  {
+    degree_sorted_nodes.push_back(a->second);
+  }
 
   // Deallocate adjecency matrix that no longer used.
   adjecency_matrix.clear();

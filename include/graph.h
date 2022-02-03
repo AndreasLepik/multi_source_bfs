@@ -22,6 +22,8 @@ private:
   vector<int> adjecency_indexes;
   vector<int> adjecency_edges;
 
+  vector<int> degree_sorted_nodes;
+
   void addEdge(int, int);
   void loadGraphFromFile(string);
 
@@ -29,6 +31,7 @@ public:
   Graph(int, string);
   vector<int> getEdges(int);
   int getSize();
+  vector<int> getDegreeSortedNodes();
 };
 
 #endif
