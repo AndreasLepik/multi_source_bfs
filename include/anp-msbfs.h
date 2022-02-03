@@ -10,7 +10,7 @@ using namespace std;
  * #################### Aggregated Neighbor Processing Multi Source Breadth First Search ####################
  *
  * MSBFS with aggregated neighbor processing optimization.
- * Further reduces the amount of BFS computation calls and and the amount of random memory accesses.
+ * Further reduces the amount of BFS computation calls and the amount of random memory accesses.
  * Using the same bitmapping optimizations as bitmapping-msbfs.
  * As of now, limited to max 63 consurrent BFSs because of the register sizes.
  */
@@ -28,8 +28,8 @@ class ANP_MSBFS : public BFS
     // Add starting points to seen and visit.
     for (int i = 0; i < sources.size(); ++i)
     {
-      seen.at(sources.at(i)) = seen.at(sources.at(i)) | (1 << i);
-      visit.at(sources.at(i)) = visit.at(sources.at(i)) | (1 << i);
+      seen[sources[i]] = seen[sources[i]] | (1 << i);
+      visit[sources[i]] = visit[sources[i]] | (1 << i);
     }
 
     // while v != 0 for ALL v in visit
@@ -38,26 +38,26 @@ class ANP_MSBFS : public BFS
     {
       for (int i = 1; i <= graph.getSize(); ++i)
       {
-        if (visit.at(i) != 0)
+        if (visit[i] != 0)
         {
           for (auto n : graph.getEdges(i))
           {
-            visitNext.at(n) = visitNext.at(n) | visit.at(i);
+            visitNext[n] = visitNext[n] | visit[i];
           }
         }
       }
 
       for (int i = 1; i <= graph.getSize(); ++i)
       {
-        if (visitNext.at(i) != 0)
+        if (visitNext[i] != 0)
         {
-          visitNext.at(i) = visitNext.at(i) & ~(seen.at(i));
-          seen.at(i) = seen.at(i) | visitNext.at(i);
+          visitNext[i] = visitNext[i] & ~(seen[i]);
+          seen[i] = seen[i] | visitNext[i];
 
-          if (visitNext.at(i) != 0)
+          if (visitNext[i] != 0)
           {
-              // do actual BFS calculation here
-              // cout << i << endl;
+            // do actual BFS calculation here
+            // cout << i << endl;
           }
         }
       }

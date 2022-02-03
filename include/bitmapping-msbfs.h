@@ -8,7 +8,7 @@ using namespace std;
 
 /**
  * #################### Bitmapping Multi Source Breadth First Search ####################
- * 
+ *
  * Functionally identical to MSBFS but using bitmaps instead of STL datastructures, so way faster.
  * As of now, limited to max 63 consurrent BFSs because of the register sizes.
  */
@@ -26,8 +26,8 @@ class BitmappingMSBFS : public BFS
     // Add starting points to seen and visit.
     for (int i = 0; i < sources.size(); ++i)
     {
-      seen.at(sources.at(i)) = seen.at(sources.at(i)) | (1 << i);
-      visit.at(sources.at(i)) = visit.at(sources.at(i)) | (1 << i);
+      seen[sources[i]] = seen[sources[i]] | (1 << i);
+      visit[sources[i]] = visit[sources[i]] | (1 << i);
     }
 
     // while v != 0 for ALL v in visit
@@ -36,19 +36,19 @@ class BitmappingMSBFS : public BFS
     {
       for (int i = 1; i <= graph.getSize(); ++i)
       {
-        if (visit.at(i) != 0) // B0
+        if (visit[i] != 0)
         {
           for (auto n : graph.getEdges(i))
           {
             // the set of BFSs that have not yet visited n
-            auto D = visit.at(i) & ~(seen.at(n));
+            auto D = visit[i] & ~(seen[n]);
             if (D != 0)
             {
               // auto numberOfBfs = count_set_bit(D);
               // numberOfCalculationsSaved += (numberOfBfs - 1);
 
-              visitNext.at(n) = visitNext.at(n) | D;
-              seen.at(n) = seen.at(n) | D;
+              visitNext[n] = visitNext[n] | D;
+              seen[n] = seen[n] | D;
 
               // do actual BFS calculation here
               // cout << n << endl;
