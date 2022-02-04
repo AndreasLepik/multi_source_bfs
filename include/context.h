@@ -15,9 +15,11 @@ public:
   Context(string path, int size, BFS *algorithm, vector<int> sources, bool timer = false);
 
   void run();
+  void runSorted(int);
 
   void setTimer(bool);
   void setData(string path, int graphSize);
   void setAlgorithm(BFS *algorithm);
   void setSources(vector<int> sources);
+  vector<int> getDegreeSortedNodes();
 };
