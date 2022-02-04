@@ -42,3 +42,8 @@ void Context::setSources(vector<int> sources)
 {
   this->sources = sources;
 }
+
+vector<int> Context::getDegreeSortedNodes()
+{
+  return graph.getDegreeSortedNodes();
+}
