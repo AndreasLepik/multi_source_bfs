@@ -4,6 +4,18 @@
 #include "bitmapping-msbfs.h"
 #include "textbook-bfs.h"
 #include "unordered-msbfs.h"
+#include "anp-msbfs.h"
+
+vector<int> copyNumberOfElements(vector<int> &vec, int numberOfElements)
+{
+  auto startIterator = vec.begin();
+  auto endIterator = vec.begin() + numberOfElements;
+
+  vector<int> res(numberOfElements);
+
+  copy(startIterator, endIterator, res.begin());
+  return res;
+}
 
 int main()
 {
@@ -11,7 +23,8 @@ int main()
   TextBookBFS     tbfs;
   MSBFS           msbfs;
   UnorderedMSBFS  umsbfs;
-  BitmappingMSBFS bmsbfs;
+  BitmappingMSBFS bm_msbfs;
+  ANP_MSBFS       anp_msbfs;
 
   // Local data sets
   string test =       "../data_sets/test/test.txt";    // size 6
@@ -20,24 +33,38 @@ int main()
   string wikipedia =  "../data_sets/wikipedia_link_eu/out.wikipedia_link_eu"; // size 371025
 
   // Starting points
-  vector<int> wikipediaFewSources{1, 10, 20};
+  vector<int> wikipediaFewSources{1000, 2000, 3000};
   vector<int> twentyOnes{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   vector<int> testSources{1, 2};
-  vector<int> wikipediaSources;
-  for (int i = 1; i < 4; ++i) {
-    wikipediaSources.push_back(i * 1000);
+  vector<int> tenSources;
+  for (int i = 1; i < 11; ++i) {
+    tenSources.push_back(i * 1000);
+  }
+  vector<int> sixtySources;
+  for (int i = 1; i < 61; ++i) {
+    sixtySources.push_back(i * 6000);
   }
 
-  // Context context{test, 6, &bmsbfs, true};
-  Context context{wikipedia, 371025, &bmsbfs, wikipediaSources, true};
-  // Context context{zebra, 27, &msbfs, true};
+  // Context context{test, 6, &bm_msbfs, testSources, true};
+  // Context context{zebra, 27, &bm_msbfs, testSources, true};
+  Context context{wikipedia, 371025, &bm_msbfs, sixtySources, true};
+
+  auto sortedSources = context.getDegreeSortedNodes();
+  auto sixtySorted = copyNumberOfElements(sortedSources, 60);
+  context.setSources(sixtySorted);
 
   context.run();
-  context.setAlgorithm(&msbfs);
   context.run();
-  context.setAlgorithm(&umsbfs);
   context.run();
-  context.setAlgorithm(&tbfs);
+  context.run();
+  context.run();
+  context.run();
+  context.setAlgorithm(&anp_msbfs);
+  context.run();
+  context.run();
+  context.run();
+  context.run();
+  context.run();
   context.run();
 
   return 0;
