@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <vector>
 #include <set>
+#include <span>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ private:
 
 public:
   Graph(int, string);
-  vector<int> getEdges(int);
+  span<int> getEdges(int);
   int getSize();
   vector<int> getDegreeSortedNodes();
 };

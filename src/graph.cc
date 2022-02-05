@@ -86,7 +86,7 @@ void Graph::loadGraphFromFile(string inputFilePath)
   adjecency_matrix.clear();
 }
 
-vector<int> Graph::getEdges(int node)
+span<int> Graph::getEdges(int node)
 {
   int start = this->adjecency_indexes.at(node);
   int end = this->adjecency_indexes.at(node + 1);
@@ -94,8 +94,9 @@ vector<int> Graph::getEdges(int node)
   auto startIterator = this->adjecency_edges.begin() + start;
   auto endIterator = this->adjecency_edges.begin() + end;
 
-  vector<int> res(end - start);
+  span<int> res{startIterator, endIterator};
+  // vector<int> res(end - start);
 
-  copy(startIterator, endIterator, res.begin());
+  // copy(startIterator, endIterator, res.begin());
   return res;
 }

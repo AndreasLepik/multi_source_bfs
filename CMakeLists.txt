@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.16)
 
 project(msbfs)
 
@@ -8,4 +8,4 @@ file(GLOB SOURCES "src/*.cc")
 
 add_executable(MSBFS ${SOURCES})
 
-target_compile_features(MSBFS PRIVATE cxx_std_17)
+target_compile_features(MSBFS PRIVATE cxx_std_20)
