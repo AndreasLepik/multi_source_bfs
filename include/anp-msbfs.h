@@ -18,8 +18,8 @@ class ANP_MSBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
   {
-    cout << "Runnig ANP MSBFS..." << endl;
-    // int numberOfCalculationsSaved = 0;
+    cout << "Running ANP MSBFS..." << endl;
+    int numberOfCalculations = 0;
 
     vector<u_int64_t> seen(graph.getSize() + 1, 0);
     vector<u_int64_t> visit(graph.getSize() + 1, 0);
@@ -57,6 +57,7 @@ class ANP_MSBFS : public BFS
           if (visitNext[i] != 0)
           {
             // do actual BFS calculation here
+            numberOfCalculations++;
             // cout << i << endl;
           }
         }
@@ -66,7 +67,7 @@ class ANP_MSBFS : public BFS
       visitNext = vector<u_int64_t>(graph.getSize() + 1, 0);
       // cout << "+" << endl;
     }
-    // cout << "Number of calculations saved in bitwise MSBFS: " << numberOfCalculationsSaved << endl;
+    cout << "Number of calculations in ANP MSBFS: " << numberOfCalculations << endl;
   };
 };
 

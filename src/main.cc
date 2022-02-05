@@ -54,16 +54,21 @@ int main()
   context.setSources(sixtySorted);
 
   context.run();
-  context.run();
-  context.run();
-  context.run();
+  cout << endl;
+  cout << "Heuristic Maximus Sharing: " << endl;
   context.run();
   context.run();
   context.setAlgorithm(&anp_msbfs);
   context.run();
   context.run();
+  cout << endl;
+
+  cout << "Randomly chosen sources: " << endl;
+  context.setAlgorithm(&bm_msbfs);
+  context.setSources(sixtySources);
   context.run();
   context.run();
+  context.setAlgorithm(&anp_msbfs);
   context.run();
   context.run();
 
