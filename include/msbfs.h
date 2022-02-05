@@ -16,8 +16,9 @@ class MSBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
   {
-    cout << "Runnig MSBFS..." << endl;
+    cout << "Running MSBFS..." << endl;
     // int numberOfCalculationsSaved = 0;
+    int numberOfCalculations = 0;
 
     unordered_map<int, set<int>> seen(sources.size());
     unordered_multimap<int, set<int>> visit;
@@ -77,6 +78,7 @@ class MSBFS : public BFS
             }
 
             // do actual BFS calculation here
+            numberOfCalculations++;
             // cout << n << endl;
           }
         }
@@ -88,5 +90,6 @@ class MSBFS : public BFS
       // cout << "+" << endl;
     }
     // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
+    cout << "Number of calculations in MSBFS: " << numberOfCalculations << endl;
   };
 };

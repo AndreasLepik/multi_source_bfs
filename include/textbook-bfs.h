@@ -14,7 +14,9 @@ class TextBookBFS : public BFS
 {
   void run(Graph &graph, vector<int> sources)
   {
-    cout << "Runnig TBFS..." << endl;
+    cout << "Running TBFS..." << endl;
+
+    int numberOfCalculations = 0;
     for (auto source : sources)
     {
 
@@ -34,6 +36,7 @@ class TextBookBFS : public BFS
               visitNext.push_back(n);
 
               // do actual BFS calculation here
+              numberOfCalculations++;
               // cout << n << endl;
             }
           }
@@ -43,5 +46,6 @@ class TextBookBFS : public BFS
         // cout << "+" << endl;
       }
     }
+    cout << "Number of calculations in TBFS: " << numberOfCalculations << endl;
   };
 };
