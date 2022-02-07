@@ -18,10 +18,13 @@ class BitmappingMSBFS : public BFS
   {
     cout << "Running Bitmapping MSBFS..." << endl;
     int numberOfCalculations = 0;
+    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
 
     vector<u_int64_t> seen(graph.getSize() + 1, 0);
     vector<u_int64_t> visit(graph.getSize() + 1, 0);
     vector<u_int64_t> visitNext(graph.getSize() + 1, 0);
+
+    int currentDepth = 1;
 
     // Add starting points to seen and visit.
     for (int i = 0; i < sources.size(); ++i)
@@ -52,6 +55,14 @@ class BitmappingMSBFS : public BFS
 
               // do actual BFS calculation here
               numberOfCalculations++;
+              for (int j = 1; j <= sources.size(); ++j)
+              {
+                if (D & 1 == 1)
+                {
+                  distanceSums[j] = distanceSums[j] + currentDepth;
+                }
+                D = D >> 1;
+              }
               // cout << n << endl;
             }
           }
@@ -60,8 +71,14 @@ class BitmappingMSBFS : public BFS
       visit = move(visitNext);
       visitNext = vector<u_int64_t>(graph.getSize() + 1, 0);
       // cout << "+" << endl;
+      currentDepth++;
     }
     cout << "Number of calculations in bitwise MSBFS: " << numberOfCalculations << endl;
+    // for (auto d : distanceSums)
+    // {
+    //   cout << d << endl;
+    // }
+    cout << endl;
   };
 };
 

@@ -17,12 +17,16 @@ class TextBookBFS : public BFS
     cout << "Running TBFS..." << endl;
 
     int numberOfCalculations = 0;
-    for (auto source : sources)
+    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
+    
+    for (int i = 0; i < sources.size(); ++i)
     {
-
+      auto source = sources[i];
       unordered_set<int> seen{source};
       vector<int> visit{source};
       vector<int> visitNext;
+
+      int currentDepth = 1;
 
       while (visit.size() > 0)
       {
@@ -37,6 +41,7 @@ class TextBookBFS : public BFS
 
               // do actual BFS calculation here
               numberOfCalculations++;
+              distanceSums[i + 1] = distanceSums[i + 1] + currentDepth;
               // cout << n << endl;
             }
           }
@@ -44,8 +49,12 @@ class TextBookBFS : public BFS
         visit = move(visitNext);
         visitNext.clear();
         // cout << "+" << endl;
+        currentDepth++;
       }
     }
     cout << "Number of calculations in TBFS: " << numberOfCalculations << endl;
+    for (auto d : distanceSums) {
+      cout << d << endl;
+    }
   };
 };

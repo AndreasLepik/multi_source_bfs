@@ -35,9 +35,9 @@ int main()
   // Starting points
   vector<int> wikipediaFewSources{1000, 2000, 3000};
   vector<int> twentyOnes{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-  vector<int> testSources{1, 2};
+  vector<int> testSources{1, 5};
   vector<int> tenSources;
-  for (int i = 1; i < 11; ++i) {
+  for (int i = 1; i < 33; ++i) {
     tenSources.push_back(i * 1000);
   }
   vector<int> sixtySources;
@@ -47,29 +47,24 @@ int main()
 
   // Context context{test, 6, &bm_msbfs, testSources, true};
   // Context context{zebra, 27, &bm_msbfs, testSources, true};
-  Context context{wikipedia, 371025, &bm_msbfs, sixtySources, true};
+  Context context{wikipedia, 371025, &anp_msbfs, sixtySources, true};
 
-  auto sortedSources = context.getDegreeSortedNodes();
-  auto sixtySorted = copyNumberOfElements(sortedSources, 60);
-  context.setSources(sixtySorted);
-
-  context.run();
-  cout << endl;
-  cout << "Heuristic Maximus Sharing: " << endl;
-  context.run();
-  context.run();
-  context.setAlgorithm(&anp_msbfs);
-  context.run();
-  context.run();
-  cout << endl;
-
-  cout << "Randomly chosen sources: " << endl;
-  context.setAlgorithm(&bm_msbfs);
+  // auto sortedSources = context.getDegreeSortedNodes();
+  // auto sixtySorted = copyNumberOfElements(sortedSources, 60);
   context.setSources(sixtySources);
+
   context.run();
   context.run();
-  context.setAlgorithm(&anp_msbfs);
   context.run();
+  context.run();
+  context.run();
+  context.setAlgorithm(&bm_msbfs);
+  context.run();
+  context.run();
+  context.run();
+  context.run();
+
+  context.setAlgorithm(&tbfs);
   context.run();
 
   return 0;

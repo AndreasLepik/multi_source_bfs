@@ -19,12 +19,15 @@ class MSBFS : public BFS
     cout << "Running MSBFS..." << endl;
     // int numberOfCalculationsSaved = 0;
     int numberOfCalculations = 0;
+    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
 
     unordered_map<int, set<int>> seen(sources.size());
     unordered_multimap<int, set<int>> visit;
     unordered_multimap<int, set<int>> visitNext;
     set<int> visitKeys;
     set<int> visitNextKeys;
+
+    int currentDepth = 1;
 
     for (auto source : sources)
     {
@@ -64,6 +67,12 @@ class MSBFS : public BFS
           if (D.size() > 0)
           {
             // numberOfCalculationsSaved += (D.size() - 1);
+            // do actual BFS calculation here before destructive merge function
+            numberOfCalculations++;
+            for (auto d : D)
+            {
+              distanceSums[d] = distanceSums[d] + currentDepth;
+            }
 
             visitNext.insert(make_pair(n, D));
             visitNextKeys.insert(n);
@@ -77,8 +86,6 @@ class MSBFS : public BFS
               seen.at(n).merge(D);
             }
 
-            // do actual BFS calculation here
-            numberOfCalculations++;
             // cout << n << endl;
           }
         }
@@ -88,8 +95,13 @@ class MSBFS : public BFS
       visitNext.clear();
       visitNextKeys.clear();
       // cout << "+" << endl;
+      currentDepth++;
     }
     // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
     cout << "Number of calculations in MSBFS: " << numberOfCalculations << endl;
+    for (auto d : distanceSums)
+    {
+      cout << d << endl;
+    }
   };
 };
