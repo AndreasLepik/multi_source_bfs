@@ -45,27 +45,31 @@ int main()
     sixtySources.push_back(i * 6000);
   }
 
+  u_int64_t n = __INT64_MAX__;
+  int count = 0;
+  while (n != 0)
+  {
+    n = n >> 1; // right shift 1 bit
+    count++;
+  }
+  cout << count << endl;
   // Context context{test, 6, &bm_msbfs, testSources, true};
   // Context context{zebra, 27, &bm_msbfs, testSources, true};
   Context context{wikipedia, 371025, &anp_msbfs, sixtySources, true};
 
   // auto sortedSources = context.getDegreeSortedNodes();
   // auto sixtySorted = copyNumberOfElements(sortedSources, 60);
-  context.setSources(sixtySources);
+  // context.setSources(tenSources);
 
-  context.run();
-  context.run();
-  context.run();
-  context.run();
+  auto anp_res = context.run();
   context.run();
   context.setAlgorithm(&bm_msbfs);
-  context.run();
-  context.run();
-  context.run();
+  auto bm_res = context.run();
   context.run();
 
-  context.setAlgorithm(&tbfs);
-  context.run();
+  cout << "Returned identical results: " << (anp_res == bm_res)<< endl; 
+  // context.setAlgorithm(&tbfs);
+  // context.run();
 
   return 0;
 }

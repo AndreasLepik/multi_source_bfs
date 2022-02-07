@@ -8,18 +8,19 @@ using namespace std;
 Context::Context(string path, int size, BFS *algorithm, vector<int> sources, bool timer)
     : bfs(algorithm), graph(Graph{size, path}), sources(sources), timer(timer){};
 
-void Context::run()
+vector<int> Context::run()
 {
   if (timer)
   {
     auto start = clock();
-    bfs->run(graph, sources);
+    auto res = bfs->run(graph, sources);
     auto end = clock();
     cout << "Time: " << (end - start) / (double)(CLOCKS_PER_SEC / 1000) << "ms" << endl;
+    return res;
   }
   else
   {
-    bfs->run(graph, sources);
+    return bfs->run(graph, sources);
   }
 }
 

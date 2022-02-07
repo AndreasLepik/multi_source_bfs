@@ -7,10 +7,11 @@ using namespace std;
 
 class UnorderedMSBFS : public BFS
 {
-  void run(Graph &graph, vector<int> sources)
+  vector<int> run(Graph &graph, vector<int> sources)
   {
     cout << "Runnig unordered MSBFS..." << endl;
-    // int numberOfCalculationsSaved = 0;
+    int numberOfCalculations = 0;
+    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
 
     // have to use ordered set in order to do set difference?
     unordered_map<int, unordered_set<int>> seen(sources.size());
@@ -18,6 +19,8 @@ class UnorderedMSBFS : public BFS
     unordered_multimap<int, unordered_set<int>> visitNext;
     unordered_set<int> visitKeys;
     unordered_set<int> visitNextKeys;
+
+    int currentDepth = 1;
 
     for (auto source : sources)
     {
@@ -56,10 +59,12 @@ class UnorderedMSBFS : public BFS
           // D = exploreNext \ seen.at(n);
           if (D.size() > 0)
           {
-            // if (D.size() > 1)
-            // {
-            //   numberOfCalculationsSaved += (D.size() - 1);
-            // }
+            // BFS calculation here before destructive merge function
+            numberOfCalculations++;
+            for (auto d : D)
+            {
+              distanceSums[d] = distanceSums[d] + currentDepth;
+            }
             visitNext.insert(make_pair(n, D));
             visitNextKeys.insert(n);
             auto nSeen = seen.find(n);
@@ -72,7 +77,6 @@ class UnorderedMSBFS : public BFS
               seen.at(n).merge(D);
             }
 
-            // do actual BFS calculation here
             // cout << n << endl;
           }
         }
@@ -84,5 +88,6 @@ class UnorderedMSBFS : public BFS
       // cout << "+" << endl;
     }
     // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
+    return distanceSums;
   };
 };

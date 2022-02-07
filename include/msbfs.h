@@ -14,10 +14,9 @@ using namespace std;
  */
 class MSBFS : public BFS
 {
-  void run(Graph &graph, vector<int> sources)
+  vector<int> run(Graph &graph, vector<int> sources)
   {
     cout << "Running MSBFS..." << endl;
-    // int numberOfCalculationsSaved = 0;
     int numberOfCalculations = 0;
     vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
 
@@ -66,7 +65,6 @@ class MSBFS : public BFS
           // D = exploreNext \ seen.at(n);
           if (D.size() > 0)
           {
-            // numberOfCalculationsSaved += (D.size() - 1);
             // do actual BFS calculation here before destructive merge function
             numberOfCalculations++;
             for (auto d : D)
@@ -99,9 +97,10 @@ class MSBFS : public BFS
     }
     // cout << "Number of calculations saved in MSBFS: " << numberOfCalculationsSaved << endl;
     cout << "Number of calculations in MSBFS: " << numberOfCalculations << endl;
-    for (auto d : distanceSums)
-    {
-      cout << d << endl;
-    }
+    // for (auto d : distanceSums)
+    // {
+    //   cout << d << endl;
+    // }
+    return distanceSums;
   };
 };

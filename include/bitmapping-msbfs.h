@@ -14,7 +14,7 @@ using namespace std;
  */
 class BitmappingMSBFS : public BFS
 {
-  void run(Graph &graph, vector<int> sources)
+  vector<int> run(Graph &graph, vector<int> sources)
   {
     cout << "Running Bitmapping MSBFS..." << endl;
     int numberOfCalculations = 0;
@@ -79,6 +79,7 @@ class BitmappingMSBFS : public BFS
     //   cout << d << endl;
     // }
     cout << endl;
+    return distanceSums;
   };
 };
 

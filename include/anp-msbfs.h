@@ -16,7 +16,7 @@ using namespace std;
  */
 class ANP_MSBFS : public BFS
 {
-  void run(Graph &graph, vector<int> sources)
+  vector<int> run(Graph &graph, vector<int> sources)
   {
     cout << "Running ANP MSBFS..." << endl;
     int numberOfCalculations = 0;
@@ -85,7 +85,8 @@ class ANP_MSBFS : public BFS
     // {
     //   cout << d << endl;
     // }
-    cout << endl;
+    // cout << endl;
+    return distanceSums;
   };
 };
 

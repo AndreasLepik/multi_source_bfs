@@ -12,7 +12,7 @@ using namespace std;
  */
 class TextBookBFS : public BFS
 {
-  void run(Graph &graph, vector<int> sources)
+  vector<int> run(Graph &graph, vector<int> sources)
   {
     cout << "Running TBFS..." << endl;
 
@@ -53,8 +53,9 @@ class TextBookBFS : public BFS
       }
     }
     cout << "Number of calculations in TBFS: " << numberOfCalculations << endl;
-    for (auto d : distanceSums) {
-      cout << d << endl;
-    }
+    // for (auto d : distanceSums) {
+    //   cout << d << endl;
+    // }
+    return distanceSums;
   };
 };

@@ -14,7 +14,7 @@ private:
 public:
   Context(string path, int size, BFS *algorithm, vector<int> sources, bool timer = false);
 
-  void run();
+  vector<int> run();
   void runSorted(int);
 
   void setTimer(bool);

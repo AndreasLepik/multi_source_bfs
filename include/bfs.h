@@ -10,7 +10,7 @@ class BFS
 {
 public:
   virtual ~BFS(){};
-  virtual void run(Graph &, vector<int>) = 0;
+  virtual vector<int> run(Graph &, vector<int>) = 0;
 };
 
 #endif
