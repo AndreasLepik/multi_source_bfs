@@ -78,7 +78,7 @@ class BitmappingMSBFS : public BFS
     // {
     //   cout << d << endl;
     // }
-    cout << endl;
+    // cout << endl;
     return distanceSums;
   };
 };

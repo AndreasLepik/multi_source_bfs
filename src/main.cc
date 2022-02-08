@@ -37,39 +37,43 @@ int main()
   vector<int> twentyOnes{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   vector<int> testSources{1, 5};
   vector<int> tenSources;
-  for (int i = 1; i < 33; ++i) {
-    tenSources.push_back(i * 1000);
+  for (int i = 1; i < 4; ++i) {
+    tenSources.push_back(i * 1);
   }
   vector<int> sixtySources;
   for (int i = 1; i < 61; ++i) {
     sixtySources.push_back(i * 6000);
   }
 
-  u_int64_t n = __INT64_MAX__;
-  int count = 0;
-  while (n != 0)
-  {
-    n = n >> 1; // right shift 1 bit
-    count++;
-  }
-  cout << count << endl;
   // Context context{test, 6, &bm_msbfs, testSources, true};
-  // Context context{zebra, 27, &bm_msbfs, testSources, true};
-  Context context{wikipedia, 371025, &anp_msbfs, sixtySources, true};
+  // Context context{zebra, 27, &bm_msbfs, tenSources, true};
+  Context context{wikipedia, 371025, &bm_msbfs, tenSources, true};
 
   // auto sortedSources = context.getDegreeSortedNodes();
   // auto sixtySorted = copyNumberOfElements(sortedSources, 60);
   // context.setSources(tenSources);
 
-  auto anp_res = context.run();
-  context.run();
-  context.setAlgorithm(&bm_msbfs);
   auto bm_res = context.run();
   context.run();
+  context.run();
+  cout << endl;
 
-  cout << "Returned identical results: " << (anp_res == bm_res)<< endl; 
-  // context.setAlgorithm(&tbfs);
-  // context.run();
+  context.setAlgorithm(&anp_msbfs);
+  auto anp_res = context.run();
+  context.run();
+  cout << endl;
+
+  context.setAlgorithm(&msbfs);
+  auto m_res = context.run();
+  cout << endl;
+
+  context.setAlgorithm(&tbfs);
+  auto t_res = context.run();
+  cout << endl;
+
+  cout << "indentical? anp & bm:" << (anp_res == bm_res)<< endl; 
+  cout << "indentical? t & bm:" << (t_res == bm_res)<< endl; 
+  cout << "indentical? m & bm:" << (m_res == bm_res)<< endl; 
 
   return 0;
 }
