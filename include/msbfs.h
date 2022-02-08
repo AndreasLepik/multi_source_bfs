@@ -28,11 +28,11 @@ class MSBFS : public BFS
 
     int currentDepth = 1;
 
-    for (auto source : sources)
+    for (int i = 0; i < sources.size(); ++i)
     {
-      seen.insert(make_pair(source, set<int>{source}));
-      visit.insert(make_pair(source, set<int>{source}));
-      visitKeys.insert(source);
+      seen.insert(make_pair(sources[i], set<int>{i}));
+      visit.insert(make_pair(sources[i], set<int>{i}));
+      visitKeys.insert(sources[i]);
     }
 
     while (visit.size() > 0)
@@ -69,7 +69,7 @@ class MSBFS : public BFS
             numberOfCalculations++;
             for (auto d : D)
             {
-              distanceSums[d] = distanceSums[d] + currentDepth;
+              distanceSums[d + 1] = distanceSums[d + 1] + currentDepth;
             }
 
             visitNext.insert(make_pair(n, D));
