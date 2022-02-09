@@ -69,7 +69,7 @@ class MSBFS : public BFS
             numberOfCalculations++;
             for (auto d : D)
             {
-              distanceSums[d + 1] = distanceSums[d + 1] + currentDepth;
+              distanceSums[d] = distanceSums[d] + currentDepth;
             }
 
             visitNext.insert(make_pair(n, D));

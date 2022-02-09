@@ -37,21 +37,20 @@ int main()
   vector<int> twentyOnes{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
   vector<int> testSources{1, 5};
   vector<int> tenSources;
-  for (int i = 1; i < 4; ++i) {
+  for (int i = 0; i < 11; ++i) {
     tenSources.push_back(i * 1);
   }
   vector<int> sixtySources;
-  for (int i = 1; i < 61; ++i) {
+  for (int i = 0; i < 64; ++i) {
     sixtySources.push_back(i * 6000);
   }
 
   // Context context{test, 6, &bm_msbfs, testSources, true};
-  // Context context{zebra, 27, &bm_msbfs, tenSources, true};
   Context context{wikipedia, 371025, &bm_msbfs, tenSources, true};
 
   // auto sortedSources = context.getDegreeSortedNodes();
-  // auto sixtySorted = copyNumberOfElements(sortedSources, 60);
-  // context.setSources(tenSources);
+  // auto sixtySorted = copyNumberOfElements(sortedSources, 5);
+  // context.setSources(sixtySorted);
 
   auto bm_res = context.run();
   context.run();
@@ -63,17 +62,18 @@ int main()
   context.run();
   cout << endl;
 
-  context.setAlgorithm(&msbfs);
-  auto m_res = context.run();
-  cout << endl;
+  // context.setAlgorithm(&msbfs);
+  // auto m_res = context.run();
+  // cout << endl;
 
   context.setAlgorithm(&tbfs);
   auto t_res = context.run();
   cout << endl;
 
-  cout << "indentical? anp & bm:" << (anp_res == bm_res)<< endl; 
-  cout << "indentical? t & bm:" << (t_res == bm_res)<< endl; 
-  cout << "indentical? m & bm:" << (m_res == bm_res)<< endl; 
+  cout << "indentical res? anp & bm: " << (anp_res == bm_res)<< endl; 
+  cout << "indentical res? t   & bm: " << (t_res == bm_res)<< endl; 
+  // cout << "indentical res? m   & bm: " << (m_res == bm_res)<< endl; 
+  // cout << "indentical res? m   & t: " << (m_res == t_res)<< endl; 
 
   return 0;
 }

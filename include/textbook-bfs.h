@@ -41,7 +41,7 @@ class TextBookBFS : public BFS
 
               // do actual BFS calculation here
               numberOfCalculations++;
-              distanceSums[i + 1] = distanceSums[i + 1] + currentDepth;
+              distanceSums[i] = distanceSums[i] + currentDepth;
               // cout << n << endl;
             }
           }

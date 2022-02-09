@@ -37,7 +37,7 @@ class BitmappingMSBFS : public BFS
     while (find_if(begin(visit), end(visit), [](u_int64_t a)
                    { return a > 0; }) != end(visit))
     {
-      for (int i = 1; i <= graph.getSize(); ++i)
+      for (int i = 0; i < graph.getSize(); ++i)
       {
         if (visit[i] != 0)
         {
@@ -55,7 +55,7 @@ class BitmappingMSBFS : public BFS
 
               // do actual BFS calculation here
               numberOfCalculations++;
-              for (int j = 1; j <= sources.size(); ++j)
+              for (int j = 0; j < sources.size(); ++j)
               {
                 if (D & 1 == 1)
                 {
