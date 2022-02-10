@@ -72,7 +72,7 @@ void Graph::loadGraphFromFile(string inputFilePath)
   adjecency_indexes.at(currentIndexIndex) = currentEdgeIndex;
 
   // Build sorted list based on degree
-  map<int, int> degreeMap;
+  multimap<int, int> degreeMap;
   for (int i = 0; i < adjecency_matrix.size(); ++i)
   {
     degreeMap.insert(make_pair(adjecency_matrix.at(i).size(), i));
