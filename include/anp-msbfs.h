@@ -20,7 +20,7 @@ class ANP_MSBFS : public BFS
   {
     cout << "Running ANP MSBFS..." << endl;
     int numberOfCalculations = 0;
-    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
+    vector<int> distanceSums = vector<int>(sources.size(), 0);
 
     vector<u_int64_t> seen(graph.getSize() + 1, 0);
     vector<u_int64_t> visit(graph.getSize() + 1, 0);
@@ -39,7 +39,7 @@ class ANP_MSBFS : public BFS
     while (find_if(begin(visit), end(visit), [](u_int64_t a)
                    { return a > 0; }) != end(visit))
     {
-      for (int i = 0; i < graph.getSize(); ++i)
+      for (int i = 1; i <= graph.getSize(); ++i)
       {
         if (visit[i] != 0)
         {
@@ -81,25 +81,6 @@ class ANP_MSBFS : public BFS
       currentDepth++;
     }
     cout << "Number of calculations in ANP MSBFS: " << numberOfCalculations << endl;
-    // for (auto d : distanceSums)
-    // {
-    //   cout << d << endl;
-    // }
-    // cout << endl;
     return distanceSums;
   };
 };
-
-// int count_set_bit(int n)
-// {
-//   int count = 0;
-//   while (n != 0)
-//   {
-//     if (n & 1 == 1)
-//     {
-//       count++;
-//     }
-//     n = n >> 1; // right shift 1 bit
-//   }
-//   return count;
-// }

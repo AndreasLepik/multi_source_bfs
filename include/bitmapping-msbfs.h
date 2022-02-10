@@ -18,7 +18,7 @@ class BitmappingMSBFS : public BFS
   {
     cout << "Running Bitmapping MSBFS..." << endl;
     int numberOfCalculations = 0;
-    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
+    vector<int> distanceSums = vector<int>(sources.size(), 0);
 
     vector<u_int64_t> seen(graph.getSize() + 1, 0);
     vector<u_int64_t> visit(graph.getSize() + 1, 0);
@@ -37,7 +37,7 @@ class BitmappingMSBFS : public BFS
     while (find_if(begin(visit), end(visit), [](u_int64_t a)
                    { return a > 0; }) != end(visit))
     {
-      for (int i = 0; i < graph.getSize(); ++i)
+      for (int i = 1; i <= graph.getSize(); ++i)
       {
         if (visit[i] != 0)
         {
@@ -47,9 +47,6 @@ class BitmappingMSBFS : public BFS
             auto D = visit[i] & ~(seen[n]);
             if (D != 0)
             {
-              // auto numberOfBfs = count_set_bit(D);
-              // numberOfCalculationsSaved += (numberOfBfs - 1);
-
               visitNext[n] = visitNext[n] | D;
               seen[n] = seen[n] | D;
 
@@ -74,25 +71,6 @@ class BitmappingMSBFS : public BFS
       currentDepth++;
     }
     cout << "Number of calculations in bitwise MSBFS: " << numberOfCalculations << endl;
-    // for (auto d : distanceSums)
-    // {
-    //   cout << d << endl;
-    // }
-    // cout << endl;
     return distanceSums;
   };
 };
-
-int count_set_bit(int n)
-{
-  int count = 0;
-  while (n != 0)
-  {
-    if (n & 1 == 1)
-    {
-      count++;
-    }
-    n = n >> 1; // right shift 1 bit
-  }
-  return count;
-}
