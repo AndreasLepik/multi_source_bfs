@@ -17,7 +17,7 @@ class TextBookBFS : public BFS
     cout << "Running TBFS..." << endl;
 
     int numberOfCalculations = 0;
-    vector<int> distanceSums = vector<int>(sources.size(), 0);
+    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
     
     for (int i = 0; i < sources.size(); ++i)
     {

@@ -13,6 +13,7 @@ using namespace std;
  * Further reduces the amount of BFS computation calls and the amount of random memory accesses.
  * Using the same bitmapping optimizations as bitmapping-msbfs.
  * As of now, limited to max 63 consurrent BFSs because of the register sizes.
+ * Indexing from 1 since the data input does so.
  */
 class ANP_MSBFS : public BFS
 {
@@ -20,7 +21,7 @@ class ANP_MSBFS : public BFS
   {
     cout << "Running ANP MSBFS..." << endl;
     int numberOfCalculations = 0;
-    vector<int> distanceSums = vector<int>(sources.size(), 0);
+    vector<int> distanceSums = vector<int>(sources.size() + 1, 0);
 
     vector<u_int64_t> seen(graph.getSize() + 1, 0);
     vector<u_int64_t> visit(graph.getSize() + 1, 0);
@@ -31,8 +32,9 @@ class ANP_MSBFS : public BFS
     // Add starting points to seen and visit.
     for (int i = 0; i < sources.size(); ++i)
     {
-      seen[sources[i]] = seen[sources[i]] | (1 << i);
-      visit[sources[i]] = visit[sources[i]] | (1 << i);
+      u_int64_t shifted = (u_int64_t) 1 << i;
+      seen[sources[i]] = seen[sources[i]] | shifted;
+      visit[sources[i]] = visit[sources[i]] | shifted;
     }
 
     // while v != 0 for ALL v in visit
@@ -62,7 +64,7 @@ class ANP_MSBFS : public BFS
             // do actual BFS calculation here
             numberOfCalculations++;
             auto vn = visitNext[i];
-            for (int j = 0; j < sources.size(); ++j)
+            for (int j = 0; j < sources.size() || vn != 0; ++j)
             {
               if (vn & 1 == 1)
               {
