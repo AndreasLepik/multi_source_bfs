@@ -32,7 +32,7 @@ class ANP_MSBFS : public BFS
     // Add starting points to seen and visit.
     for (int i = 0; i < sources.size(); ++i)
     {
-      u_int64_t shifted = (u_int64_t) 1 << i;
+      u_int64_t shifted = (u_int64_t)1 << i;
       seen[sources[i]] = seen[sources[i]] | shifted;
       visit[sources[i]] = visit[sources[i]] | shifted;
     }
@@ -64,13 +64,15 @@ class ANP_MSBFS : public BFS
             // do actual BFS calculation here
             numberOfCalculations++;
             auto vn = visitNext[i];
-            for (int j = 0; j < sources.size() || vn != 0; ++j)
+            int j = 0;
+            while (vn > 0)
             {
               if (vn & 1 == 1)
               {
-                distanceSums[j] = distanceSums[j] + currentDepth;
+                distanceSums.at(j) = distanceSums.at(j) + currentDepth;
               }
               vn = vn >> 1;
+              j++;
             }
             // cout << i << endl;
           }

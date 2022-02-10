@@ -65,15 +65,6 @@ class BitmappingMSBFS : public BFS
                 D = D >> 1;
                 j++;
               }
-              // for (int j = 0; j < sources.size() || D != 0; ++j)
-              // {
-              //   if (D & 1 == 1)
-              //   {
-              //     distanceSums[j] = distanceSums[j] + currentDepth;
-              //   }
-              //   D = D >> 1;
-              // }
-              // cout << n << endl;
             }
           }
         }
