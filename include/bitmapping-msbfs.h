@@ -11,7 +11,7 @@ using namespace std;
  *
  * Functionally identical to MSBFS but using bitmaps instead of STL datastructures, so way faster.
  * As of now, limited to max 63 consurrent BFSs because of the register sizes.
- * Indexing from 1 since the data input does so.
+ * Indexing from 1 required since the data input does so.
  */
 class BitmappingMSBFS : public BFS
 {

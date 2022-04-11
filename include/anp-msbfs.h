@@ -13,7 +13,7 @@ using namespace std;
  * Further reduces the amount of BFS computation calls and the amount of random memory accesses.
  * Using the same bitmapping optimizations as bitmapping-msbfs.
  * As of now, limited to max 63 consurrent BFSs because of the register sizes.
- * Indexing from 1 since the data input does so.
+ * Indexing from 1 required since the data input does so.
  */
 class ANP_MSBFS : public BFS
 {

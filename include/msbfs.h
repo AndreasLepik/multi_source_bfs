@@ -11,6 +11,7 @@ using namespace std;
  * Naive MSBFS algorithm implementation using STL data structures.
  * Runs all BFSs concurrently, but single threaded.
  * When multiple BFSs reach the same node in the same depth, the calculation for that node is only done once.
+ * Indexing from 1 required since the data input does so.
  */
 class MSBFS : public BFS
 {
