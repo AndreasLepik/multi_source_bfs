@@ -38,7 +38,6 @@ void Graph::addEdge(int first, int second)
 void Graph::loadGraphFromFile(string inputFilePath)
 {
   cout << "Loading graph from file..." << endl;
-  // vector<vector<int>> adjecency_matrix();
   ifstream input(inputFilePath);
   string line;
 
@@ -95,8 +94,6 @@ span<int> Graph::getEdges(int node)
   auto endIterator = this->adjecency_edges.begin() + end;
 
   span<int> res{startIterator, endIterator};
-  // vector<int> res(end - start);
 
-  // copy(startIterator, endIterator, res.begin());
   return res;
 }
